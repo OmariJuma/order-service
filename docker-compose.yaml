@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: order-postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: order_service
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./data:/data/db
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
