@@ -1,0 +1,1 @@
+ALTER TABLE "t_order" ADD COLUMN product_name varchar(255);
