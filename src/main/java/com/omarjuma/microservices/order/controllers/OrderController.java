@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/orders")
@@ -23,5 +25,13 @@ public class OrderController {
         Order order = orderService.placeOrder(orderRequest);
         log.info("Order placed successfully with ID: {}", order.getId());
         return order;
+    }
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<Order> getAllOrders(){
+        log.info("Fetching all orders");
+        List<Order> orders= orderService.getAllOrders();
+        log.info("Total orders fetched: {}", orders.size());
+        return orders;
     }
 }

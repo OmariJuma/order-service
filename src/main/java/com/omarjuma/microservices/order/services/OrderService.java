@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -28,6 +29,10 @@ public class OrderService {
             log.error("Product with skuCode {} is not in stock", orderRequest.skuCode());
          throw new RuntimeException("Product with skuCode "+orderRequest.skuCode()+" is not in stock");
         }
+    }
+    public List<Order> getAllOrders() {
+        log.info("Fetching all orders");
+        return orderRepository.findAll();
     }
 
     private static Order mapToOrder(OrderRequest orderRequest) {
